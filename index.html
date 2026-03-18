@@ -7,263 +7,621 @@
     <meta name="description" content="PetFeliz - Petshop especializado em produtos e serviços para o bem-estar do seu animal de estimação.">
     <meta name="author" content="PetFeliz Petshop">
     <title>PetFeliz - Petshop</title>
+    <link rel="preconnect" href="https://cdn.jsdelivr.net">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <style>
+        :root {
+            --pet-bg: #f7f9f3;
+            --pet-surface: #ffffff;
+            --pet-primary: #2e7d32;
+            --pet-primary-dark: #1b5e20;
+            --pet-secondary: #f2a541;
+            --pet-text: #202124;
+            --pet-muted: #5f6368;
+        }
+
+        body {
+            background: linear-gradient(180deg, #eef7e8 0%, var(--pet-bg) 30%, #ffffff 100%);
+            color: var(--pet-text);
+        }
+
+        .skip-link {
+            position: absolute;
+            left: -999px;
+            top: 0;
+            background: #000;
+            color: #fff;
+            padding: 0.75rem 1rem;
+            z-index: 9999;
+        }
+
+        .skip-link:focus {
+            left: 1rem;
+            top: 1rem;
+        }
+
+        .hero {
+            background: radial-gradient(circle at top right, #dff3dd 0%, #f7f9f3 45%, #ffffff 100%);
+            border-radius: 1rem;
+            border: 1px solid #d8e4d3;
+        }
+
+        .section-card {
+            background: var(--pet-surface);
+            border: 1px solid #e2e8df;
+            border-radius: 1rem;
+            box-shadow: 0 8px 22px rgba(32, 33, 36, 0.06);
+        }
+
+        .product-img {
+            width: 100%;
+            max-width: 320px;
+            height: 220px;
+            object-fit: cover;
+            border-radius: 0.75rem;
+            border: 1px solid #dce6d8;
+        }
+
+        .carousel-item img {
+            width: 100%;
+            height: 430px;
+            object-fit: cover;
+        }
+
+        .carousel-caption {
+            background-color: rgba(0, 0, 0, 0.55);
+            border-radius: 0.6rem;
+            padding: 0.8rem;
+        }
+
+        .status-badge {
+            font-size: 0.95rem;
+        }
+
+        .high-contrast {
+            background: #000;
+            color: #fff;
+        }
+
+        .high-contrast .section-card,
+        .high-contrast .hero,
+        .high-contrast .card,
+        .high-contrast .carousel-caption {
+            background: #111 !important;
+            color: #fff !important;
+            border-color: #fff !important;
+        }
+
+        .high-contrast a {
+            color: #ffd54f !important;
+        }
+
+        .high-contrast .form-control,
+        .high-contrast .form-select {
+            background: #000;
+            color: #fff;
+            border-color: #fff;
+        }
+
+        *:focus-visible {
+            outline: 3px solid #ffbf47;
+            outline-offset: 2px;
+        }
+    </style>
 </head>
 
 <body>
+    <a class="skip-link" href="#conteudo-principal">Pular para o conteúdo principal</a>
+    <div class="container py-4">
 
-    <!--  CABEÇALHO  -->
-    <header>
-        <h1>PetFeliz Petshop</h1>
-        <p>O melhor para o seu melhor amigo!</p>
+        <!--  CABEÇALHO  -->
+        <header class="section-card p-4 mb-4" role="banner">
+            <div class="d-flex flex-column flex-md-row justify-content-between gap-3">
+                <div>
+                    <h1 class="display-6 fw-bold mb-1">PetFeliz Petshop</h1>
+                    <p class="mb-2 text-secondary">O melhor para o seu melhor amigo.</p>
+                    <p class="mb-0 status-badge">
+                        Data e hora atuais:
+                        <span id="statusHora" class="badge text-bg-success" aria-live="polite"></span>
+                    </p>
+                </div>
+                <div class="d-flex align-items-start">
+                    <button id="btnContraste" class="btn btn-outline-dark" type="button" aria-pressed="false"
+                        aria-label="Alternar para modo escuro ou claro">
+                        Modo Escuro/Claro
+                    </button>
+                </div>
+            </div>
 
-        <nav>
-            <ul>
-                <li><a href="#inicio">Início</a></li>
-                <li><a href="#produtos">Produtos</a></li>
-                <li><a href="#servicos">Serviços</a></li>
-                <li><a href="#contato">Contato</a></li>
-            </ul>
-        </nav>
-    </header>
+            <nav class="mt-3" aria-label="Navegação principal">
+                <ul class="nav nav-pills gap-2">
+                    <li class="nav-item"><a class="nav-link" href="#inicio">Início</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#produtos">Produtos</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#servicos">Serviços</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#agendamento">Agendamento</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#contato">Contato</a></li>
+                </ul>
+            </nav>
+        </header>
 
-    <!--  CONTEÚDO PRINCIPAL  -->
-    <main>
+        <!--  CONTEÚDO PRINCIPAL  -->
+        <main id="conteudo-principal">
 
-        <!-- Seção de Boas-vindas -->
-        <section id="inicio">
-            <h2>Bem-vindo à PetFeliz</h2>
+            <!-- Seção de Boas-vindas -->
+            <section id="inicio" class="hero p-4 mb-4">
+                <h2 class="h3">Bem-vindo à PetFeliz</h2>
+                <p>
+                    Somos uma loja especializada em produtos e serviços para cães, gatos e outros animais de estimação.
+                    Aqui você encontra tudo o que o seu pet precisa com qualidade, carinho e preço justo.
+                </p>
+                <p>
+                    Atendemos de <strong>segunda a sábado</strong>, das <strong>08h às 18h</strong>.
+                    Aceitamos todas as formas de pagamento.
+                </p>
+            </section>
+
+            <!-- Carrossel de Destaques -->
+            <section class="section-card p-3 mb-4" aria-label="Destaques da loja">
+                <h2 class="h4 mb-3">Destaques da semana</h2>
+                <div id="carouselPetFeliz" class="carousel slide" data-bs-ride="carousel" data-bs-interval="3500">
+                    <div class="carousel-indicators">
+                        <button type="button" data-bs-target="#carouselPetFeliz" data-bs-slide-to="0" class="active"
+                            aria-current="true" aria-label="Slide 1"></button>
+                        <button type="button" data-bs-target="#carouselPetFeliz" data-bs-slide-to="1"
+                            aria-label="Slide 2"></button>
+                        <button type="button" data-bs-target="#carouselPetFeliz" data-bs-slide-to="2"
+                            aria-label="Slide 3"></button>
+                    </div>
+                    <div class="carousel-inner rounded-3">
+                        <div class="carousel-item active">
+                            <img src="01.webp" class="d-block w-100" alt="Cão alimentando-se com ração premium da PetFeliz">
+                            <div class="carousel-caption d-none d-md-block">
+                                <h3 class="h5">Nutrição completa</h3>
+                                <p>Rações premium para saúde e energia em todas as fases da vida do seu pet.</p>
+                            </div>
+                        </div>
+                        <div class="carousel-item">
+                            <img src="03.webp" class="d-block w-100"
+                                alt="Banho com produtos hipoalergênicos para cães e gatos">
+                            <div class="carousel-caption d-none d-md-block">
+                                <h3 class="h5">Higiene e cuidado</h3>
+                                <p>Shampoos e serviços com foco em bem-estar e segurança dermatológica.</p>
+                            </div>
+                        </div>
+                        <div class="carousel-item">
+                            <img src="06.webp" class="d-block w-100"
+                                alt="Cão brincando com bola interativa para estímulo e exercícios">
+                            <div class="carousel-caption d-none d-md-block">
+                                <h3 class="h5">Diversão inteligente</h3>
+                                <p>Brinquedos que estimulam atividade física e mental do seu melhor amigo.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselPetFeliz"
+                        data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Anterior</span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#carouselPetFeliz"
+                        data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Próximo</span>
+                    </button>
+                </div>
+            </section>
+
+            <!--  CATÁLOGO DE PRODUTOS  -->
+            <section id="produtos" class="section-card p-4 mb-4">
+                <h2 class="h3">Catálogo de Produtos</h2>
+
+                <!-- Categoria 1: Alimentação -->
+                <section class="mb-4">
+                    <h3 class="h4">Alimentação</h3>
+                    <div class="row g-4">
+                        <article class="col-12 col-lg-6">
+                            <div class="card h-100 shadow-sm">
+                                <div class="card-body">
+                                    <h4 class="h5 card-title">Ração Premium para Cães</h4>
+                                    <img class="product-img mb-3" src="01.webp" alt="Ração premium para cães adultos"
+                                        width="300" height="200">
+                                    <p>
+                                        Ração super premium formulada para cães adultos de todas as raças.
+                                        Rica em proteínas, vitaminas e minerais essenciais para a saúde e vitalidade do seu cão.
+                                        Embalagem com <strong>15 kg</strong>.
+                                    </p>
+                                    <p class="mb-0">Valor: <strong>R$ 189,90</strong></p>
+                                </div>
+                            </div>
+                        </article>
+
+                        <article class="col-12 col-lg-6">
+                            <div class="card h-100 shadow-sm">
+                                <div class="card-body">
+                                    <h4 class="h5 card-title">Ração Natural para Gatos</h4>
+                                    <img class="product-img mb-3" src="02.webp" alt="Ração natural para gatos"
+                                        width="300" height="200">
+                                    <p>
+                                        Ração natural e balanceada para gatos de todas as idades.
+                                        Formulada com ingredientes frescos e naturais, sem conservantes artificiais.
+                                        Embalagem com <strong>3 kg</strong>.
+                                    </p>
+                                    <p class="mb-0">Valor: <strong>R$ 79,90</strong></p>
+                                </div>
+                            </div>
+                        </article>
+                    </div>
+                </section>
+
+                <!-- Categoria 2: Higiene e Beleza -->
+                <section class="mb-4">
+                    <h3 class="h4">Higiene e Beleza</h3>
+                    <div class="row g-4">
+                        <article class="col-12 col-lg-6">
+                            <div class="card h-100 shadow-sm">
+                                <div class="card-body">
+                                    <h4 class="h5 card-title">Shampoo Antipulgas</h4>
+                                    <img class="product-img mb-3" src="03.webp" alt="Shampoo antipulgas para pets"
+                                        width="300" height="200">
+                                    <p>
+                                        Shampoo veterinário antipulgas e carrapatos com ação prolongada.
+                                        Fórmula suave que não resseca a pele, indicado para cães e gatos.
+                                        Frasco com <strong>500 ml</strong>.
+                                    </p>
+                                    <p class="mb-0">Valor: <strong>R$ 34,50</strong></p>
+                                </div>
+                            </div>
+                        </article>
+
+                        <article class="col-12 col-lg-6">
+                            <div class="card h-100 shadow-sm">
+                                <div class="card-body">
+                                    <h4 class="h5 card-title">Escova para Pelos</h4>
+                                    <img class="product-img mb-3" src="04.webp"
+                                        alt="Escova profissional para pelos de pets" width="300" height="200">
+                                    <p>
+                                        Escova profissional de cerdas macias indicada para cães e gatos de pelo longo e curto.
+                                        Remove pelos mortos e nós com facilidade, deixando o pelo macio e brilhante.
+                                    </p>
+                                    <p class="mb-0">Valor: <strong>R$ 27,90</strong></p>
+                                </div>
+                            </div>
+                        </article>
+                    </div>
+                </section>
+
+                <!-- Categoria 3: Brinquedos e Acessórios -->
+                <section>
+                    <h3 class="h4">Brinquedos e Acessórios</h3>
+                    <div class="row g-4">
+                        <article class="col-12 col-lg-6">
+                            <div class="card h-100 shadow-sm">
+                                <div class="card-body">
+                                    <h4 class="h5 card-title">Bola Interativa para Cães</h4>
+                                    <img class="product-img mb-3" src="06.webp"
+                                        alt="Bola interativa colorida para cães" width="300" height="200">
+                                    <p>
+                                        Bola interativa de borracha resistente, ideal para brincadeiras e exercícios físicos.
+                                        Possui sistema de dispensação de petiscos para estimular o instinto natural do cão.
+                                        Indicada para cães de <strong>pequeno e médio porte</strong>.
+                                    </p>
+                                    <p class="mb-0">Valor: <strong>R$ 45,00</strong></p>
+                                </div>
+                            </div>
+                        </article>
+
+                        <article class="col-12 col-lg-6">
+                            <div class="card h-100 shadow-sm">
+                                <div class="card-body">
+                                    <h4 class="h5 card-title">Arranhador para Gatos</h4>
+                                    <img class="product-img mb-3" src="05.webp"
+                                        alt="Arranhador de sisal com plataforma para gatos" width="300" height="200">
+                                    <p>
+                                        Arranhador vertical em sisal natural com plataforma superior para descanso.
+                                        Preserva os móveis e satisfaz o instinto natural do gato de arranhar.
+                                        Altura: <strong>60 cm</strong>. Base antiderrapante inclusa.
+                                    </p>
+                                    <p class="mb-0">Valor: <strong>R$ 98,00</strong></p>
+                                </div>
+                            </div>
+                        </article>
+                    </div>
+                </section>
+
+            </section>
+            <!-- Fim do Catálogo de Produtos -->
+
+            <!--  SERVIÇOS  -->
+            <section id="servicos" class="section-card p-4 mb-4">
+                <h2 class="h3">Nossos Serviços</h2>
+                <p>Conheça os serviços disponíveis na PetFeliz. Nesta fase, o agendamento está focado em Banho e Tosa.</p>
+
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">
+                        <article>
+                            <h3 class="h5">Banho</h3>
+                            <p class="mb-1">Serviço de higiene com produtos hipoalergênicos e secagem adequada.</p>
+                            <p class="mb-0">Valor: <strong>A partir de R$ 60,00</strong> (conforme porte)</p>
+                        </article>
+                    </li>
+                    <li class="list-group-item">
+                        <article>
+                            <h3 class="h5">Tosa</h3>
+                            <p class="mb-1">Tosa higiênica e estética, realizada por profissionais experientes.</p>
+                            <p class="mb-0">Valor: <strong>A partir de R$ 45,00</strong> (conforme raça e tipo de pelo)</p>
+                        </article>
+                    </li>
+                </ul>
+            </section>
+
+            <!--  FORMULÁRIO DE CADASTRO E AGENDAMENTO -->
+            <section id="agendamento" class="section-card p-4 mb-4" aria-labelledby="tituloAgendamento">
+                <h2 id="tituloAgendamento" class="h3">Cadastro do Cliente e do Pet + Agendamento</h2>
+                <p>Preencha os dados para agendar Banho ou Tosa com tele-busca ou entrega no local.</p>
+
+                <form id="formAgendamento" class="row g-3" novalidate>
+                    <fieldset class="col-12">
+                        <legend class="h5">Dados do Cliente</legend>
+                        <div class="row g-3">
+                            <div class="col-12 col-md-6">
+                                <label for="nomeCliente" class="form-label">Nome completo</label>
+                                <input type="text" class="form-control" id="nomeCliente" name="nomeCliente"
+                                    placeholder="Ex.: Ana Souza" required>
+                            </div>
+                            <div class="col-12 col-md-6">
+                                <label for="cpfCliente" class="form-label">CPF</label>
+                                <input type="text" class="form-control" id="cpfCliente" name="cpfCliente"
+                                    placeholder="000.000.000-00" pattern="\d{3}\.\d{3}\.\d{3}-\d{2}" required>
+                            </div>
+                            <div class="col-12 col-md-6">
+                                <label for="enderecoCliente" class="form-label">Endereço</label>
+                                <input type="text" class="form-control" id="enderecoCliente" name="enderecoCliente"
+                                    placeholder="Rua, número e bairro" required>
+                            </div>
+                            <div class="col-12 col-md-6">
+                                <label for="telefoneCliente" class="form-label">Telefone</label>
+                                <input type="tel" class="form-control" id="telefoneCliente" name="telefoneCliente"
+                                    placeholder="(51) 99999-0000" required>
+                            </div>
+                            <div class="col-12 col-md-6">
+                                <label for="emailCliente" class="form-label">E-mail</label>
+                                <input type="email" class="form-control" id="emailCliente" name="emailCliente"
+                                    placeholder="nome@email.com" required>
+                            </div>
+                            <div class="col-12 col-md-6">
+                                <label class="form-label d-block">Sexo</label>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="sexoCliente" id="sexoFem"
+                                        value="Feminino" required>
+                                    <label class="form-check-label" for="sexoFem">Feminino</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="sexoCliente" id="sexoMasc"
+                                        value="Masculino" required>
+                                    <label class="form-check-label" for="sexoMasc">Masculino</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="sexoCliente" id="sexoOutro"
+                                        value="Outro" required>
+                                    <label class="form-check-label" for="sexoOutro">Outro</label>
+                                </div>
+                            </div>
+                        </div>
+                    </fieldset>
+
+                    <fieldset class="col-12 mt-3">
+                        <legend class="h5">Dados do Pet</legend>
+                        <div class="row g-3">
+                            <div class="col-12 col-md-4">
+                                <label for="nomePet" class="form-label">Nome do pet</label>
+                                <input type="text" class="form-control" id="nomePet" name="nomePet"
+                                    placeholder="Ex.: Thor" required>
+                            </div>
+                            <div class="col-12 col-md-4">
+                                <label for="racaPet" class="form-label">Raça</label>
+                                <input type="text" class="form-control" id="racaPet" name="racaPet"
+                                    placeholder="Ex.: SRD, Shih-tzu, Siamês" required>
+                            </div>
+                            <div class="col-12 col-md-4">
+                                <label for="idadePet" class="form-label">Idade (anos)</label>
+                                <input type="number" class="form-control" id="idadePet" name="idadePet" min="0"
+                                    max="30" step="1" required>
+                            </div>
+                        </div>
+                    </fieldset>
+
+                    <fieldset class="col-12 mt-3">
+                        <legend class="h5">Serviço e Agendamento</legend>
+                        <div class="row g-3">
+                            <div class="col-12 col-md-6">
+                                <label for="tipoServico" class="form-label">Serviço</label>
+                                <select class="form-select" id="tipoServico" name="tipoServico" required>
+                                    <option value="" selected disabled>Selecione um serviço</option>
+                                    <option value="Banho">Banho</option>
+                                    <option value="Tosa">Tosa</option>
+                                </select>
+                            </div>
+                            <div class="col-12 col-md-6">
+                                <label class="form-label d-block">Método de agendamento</label>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="metodoAgendamento"
+                                        id="metodoTeleBusca" value="Tele-busca" required>
+                                    <label class="form-check-label" for="metodoTeleBusca">
+                                        Tele-busca (buscamos o pet no endereço informado)
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="metodoAgendamento"
+                                        id="metodoEntrega" value="Entrega no local" required>
+                                    <label class="form-check-label" for="metodoEntrega">
+                                        Entrega do pet no local (cliente traz o pet até a loja)
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-12 col-md-6">
+                                <label for="dataAgendamento" class="form-label">Data</label>
+                                <input type="date" class="form-control" id="dataAgendamento" name="dataAgendamento"
+                                    required>
+                            </div>
+                            <div class="col-12 col-md-6">
+                                <label for="horaAgendamento" class="form-label">Horário</label>
+                                <input type="time" class="form-control" id="horaAgendamento" name="horaAgendamento"
+                                    min="08:00" max="18:00" required>
+                            </div>
+                            <div class="col-12" id="campoEnderecoTeleBusca" hidden>
+                                <label for="enderecoTeleBusca" class="form-label">Endereço para tele-busca</label>
+                                <input type="text" class="form-control" id="enderecoTeleBusca" name="enderecoTeleBusca"
+                                    placeholder="Informe referência e complemento para busca">
+                            </div>
+                        </div>
+                    </fieldset>
+
+                    <div class="col-12 mt-3">
+                        <label for="observacoes" class="form-label">Observações</label>
+                        <textarea class="form-control" id="observacoes" name="observacoes" rows="3"
+                            placeholder="Ex.: pet alérgico, comportamento durante banho, etc."></textarea>
+                    </div>
+
+                    <div class="col-12">
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="termos" required>
+                            <label class="form-check-label" for="termos">
+                                Confirmo que os dados informados estão corretos e autorizo o contato da PetFeliz.
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="col-12 d-flex gap-2 flex-wrap">
+                        <button type="submit" class="btn btn-success">Enviar agendamento</button>
+                        <button type="reset" class="btn btn-outline-secondary">Limpar formulário</button>
+                    </div>
+                </form>
+
+                <div id="resumoAgendamento" class="alert alert-success mt-4 d-none" role="status" aria-live="polite"></div>
+            </section>
+
+        </main>
+
+        <!--  RODAPÉ  -->
+        <footer id="contato" class="section-card p-4" role="contentinfo">
+            <h2 class="h3">Contato e Informações</h2>
+
+            <address>
+                <p><strong>PetFeliz Petshop</strong></p>
+                <p>Rua das Flores, 452 - Bairro Jardim Verde</p>
+                <p>Porto Alegre - RS, CEP 90000-000</p>
+                <p>Telefone: <a href="tel:+555133334444">(51) 3333-4444</a></p>
+                <p>WhatsApp: <a href="https://wa.me/5551999998888">(51) 99999-8888</a></p>
+                <p>E-mail: <a href="mailto:contato@petfeliz.com.br">contato@petfeliz.com.br</a></p>
+            </address>
+
+            <section>
+                <h3 class="h5">Horário de Funcionamento</h3>
+                <ul>
+                    <li>Segunda a Sexta: <strong>08h às 18h</strong></li>
+                    <li>Sábado: <strong>08h às 14h</strong></li>
+                    <li>Domingo e Feriados: <strong>Fechado</strong></li>
+                </ul>
+            </section>
+
+            <section>
+                <h3 class="h5">Informações Legais</h3>
+                <p>PetFeliz Comércio de Produtos para Animais Ltda.</p>
+                <p>CNPJ: 12.345.678/0001-99</p>
+                <p>Inscrição Municipal: 987654321</p>
+            </section>
+
             <p>
-                Somos uma loja especializada em produtos e serviços para cães, gatos e outros animais de estimação.
-                Aqui você encontra tudo o que o seu pet precisa com qualidade, carinho e preço justo.
+                <small>
+                    &copy; 2026 PetFeliz Petshop - Todos os direitos reservados.
+                </small>
             </p>
-            <p>
-                Atendemos de <strong>segunda a sábado</strong>, das <strong>08h às 18h</strong>.
-                Aceitamos todas as formas de pagamento.
-            </p>
-        </section>
+        </footer>
+    </div>
 
-        <!--  CATÁLOGO DE PRODUTOS  -->
-        <section id="produtos">
-            <h2>Catálogo de Produtos</h2>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
+    <script>
+        const statusHora = document.getElementById('statusHora');
+        const btnContraste = document.getElementById('btnContraste');
+        const formAgendamento = document.getElementById('formAgendamento');
+        const resumoAgendamento = document.getElementById('resumoAgendamento');
+        const campoEnderecoTeleBusca = document.getElementById('campoEnderecoTeleBusca');
+        const enderecoTeleBusca = document.getElementById('enderecoTeleBusca');
+        const dataAgendamento = document.getElementById('dataAgendamento');
+        const metodoTeleBusca = document.getElementById('metodoTeleBusca');
+        const metodoEntrega = document.getElementById('metodoEntrega');
 
-            <!-- Categoria 1: Alimentação -->
-            <section>
-                <h3>Alimentação</h3>
+        function atualizarHora() {
+            const agora = new Date();
+            statusHora.textContent = agora.toLocaleString('pt-BR');
+        }
 
-                <article>
-                    <h4>Ração Premium para Cães</h4>
-                    <img
-                        src="01.webp"
-                        alt="Ração premium para cães adultos"
-                        width="300"
-                        height="200">
-                    <p>
-                        Ração super premium formulada para cães adultos de todas as raças.
-                        Rica em proteínas, vitaminas e minerais essenciais para a saúde e vitalidade do seu cão.
-                        Embalagem com <strong>15 kg</strong>.
-                    </p>
-                    <p>Valor: <strong>R$ 189,90</strong></p>
-                </article>
+        function definirDataMinima() {
+            const hoje = new Date();
+            const ano = hoje.getFullYear();
+            const mes = String(hoje.getMonth() + 1).padStart(2, '0');
+            const dia = String(hoje.getDate()).padStart(2, '0');
+            dataAgendamento.min = `${ano}-${mes}-${dia}`;
+        }
 
-                <article>
-                    <h4>Ração Natural para Gatos</h4>
-                    <img
-                        src="02.webp"
-                        alt="Ração natural para gatos"
-                        width="300"
-                        height="200">
-                    <p>
-                        Ração natural e balanceada para gatos de todas as idades.
-                        Formulada com ingredientes frescos e naturais, sem conservantes artificiais.
-                        Embalagem com <strong>3 kg</strong>.
-                    </p>
-                    <p>Valor: <strong>R$ 79,90</strong></p>
-                </article>
-            </section>
+        function atualizarMetodoAgendamento() {
+            if (metodoTeleBusca.checked) {
+                campoEnderecoTeleBusca.hidden = false;
+                enderecoTeleBusca.required = true;
+            } else if (metodoEntrega.checked) {
+                campoEnderecoTeleBusca.hidden = true;
+                enderecoTeleBusca.required = false;
+                enderecoTeleBusca.value = '';
+            }
+        }
 
-            <!-- Categoria 2: Higiene e Beleza -->
-            <section>
-                <h3>Higiene e Beleza</h3>
+        function coletarValorRadio(nomeCampo) {
+            const selecionado = document.querySelector(`input[name="${nomeCampo}"]:checked`);
+            return selecionado ? selecionado.value : '';
+        }
 
-                <article>
-                    <h4>Shampoo Antipulgas</h4>
-                    <img
-                        src="03.webp"
-                        alt="Shampoo antipulgas para pets"
-                        width="300"
-                        height="200">
-                    <p>
-                        Shampoo veterinário antipulgas e carrapatos com ação prolongada.
-                        Fórmula suave que não resseca a pele, indicado para cães e gatos.
-                        Frasco com <strong>500 ml</strong>.
-                    </p>
-                    <p>Valor: <strong>R$ 34,50</strong></p>
-                </article>
+        btnContraste.addEventListener('click', () => {
+            document.body.classList.toggle('high-contrast');
+            const ativo = document.body.classList.contains('high-contrast');
+            btnContraste.setAttribute('aria-pressed', String(ativo));
+        });
 
-                <article>
-                    <h4>Escova para Pelos</h4>
-                    <img
-                        src="04.webp"
-                        alt="Escova profissional para pelos de pets"
-                        width="300"
-                        height="200">
-                    <p>
-                        Escova profissional de cerdas macias indicada para cães e gatos de pelo longo e curto.
-                        Remove pelos mortos e nós com facilidade, deixando o pelo macio e brilhante.
-                    </p>
-                    <p>Valor: <strong>R$ 27,90</strong></p>
-                </article>
-            </section>
+        metodoTeleBusca.addEventListener('change', atualizarMetodoAgendamento);
+        metodoEntrega.addEventListener('change', atualizarMetodoAgendamento);
 
-            <!-- Categoria 3: Brinquedos e Acessórios -->
-            <section>
-                <h3>Brinquedos e Acessórios</h3>
+        formAgendamento.addEventListener('reset', () => {
+            resumoAgendamento.classList.add('d-none');
+            campoEnderecoTeleBusca.hidden = true;
+            enderecoTeleBusca.required = false;
+            formAgendamento.classList.remove('was-validated');
+        });
 
-                <article>
-                    <h4>Bola Interativa para Cães</h4>
-                    <img
-                        src="06.webp"
-                        alt="Bola interativa colorida para cães"
-                        width="300"
-                        height="200">
-                    <p>
-                        Bola interativa de borracha resistente, ideal para brincadeiras e exercícios físicos.
-                        Possui sistema de dispensação de petiscos para estimular o instinto natural do cão.
-                        Indicada para cães de <strong>pequeno e médio porte</strong>.
-                    </p>
-                    <p>Valor: <strong>R$ 45,00</strong></p>
-                </article>
+        formAgendamento.addEventListener('submit', (evento) => {
+            evento.preventDefault();
+            formAgendamento.classList.add('was-validated');
 
-                <article>
-                    <h4>Arranhador para Gatos</h4>
-                    <img
-                        src="05.webp"
-                        alt="Arranhador de sisal com plataforma para gatos"
-                        width="300"
-                        height="200">
-                    <p>
-                        Arranhador vertical em sisal natural com plataforma superior para descanso.
-                        Preserva os móveis e satisfaz o instinto natural do gato de arranhar.
-                        Altura: <strong>60 cm</strong>. Base antiderrapante inclusa.
-                    </p>
-                    <p>Valor: <strong>R$ 98,00</strong></p>
-                </article>
-            </section>
+            if (!formAgendamento.checkValidity()) {
+                return;
+            }
 
-        </section>
-        <!-- Fim do Catálogo de Produtos -->
+            const nomeCliente = document.getElementById('nomeCliente').value;
+            const nomePet = document.getElementById('nomePet').value;
+            const servico = document.getElementById('tipoServico').value;
+            const metodo = coletarValorRadio('metodoAgendamento');
+            const data = document.getElementById('dataAgendamento').value;
+            const hora = document.getElementById('horaAgendamento').value;
 
+            resumoAgendamento.innerHTML = `Agendamento confirmado para <strong>${nomeCliente}</strong> e o pet <strong>${nomePet}</strong>.<br>Serviço: <strong>${servico}</strong>.<br>Método: <strong>${metodo}</strong>.<br>Data e horário: <strong>${data}</strong> às <strong>${hora}</strong>.`;
+            resumoAgendamento.classList.remove('d-none');
+        });
 
-        <!--  SERVIÇOS  -->
-        <section id="servicos">
-            <h2>Nossos Serviços</h2>
-            <p>Conheça todos os serviços disponíveis na PetFeliz. Agendamento pelo telefone ou pessoalmente.</p>
-
-            <ul>
-                <li>
-                    <article>
-                        <h3>Banho e Tosa</h3>
-                        <p>
-                            Serviço completo de banho com produtos hipoalergênicos, secagem, escovação,
-                            limpeza de ouvidos e corte de unhas. Realizado por profissionais experientes
-                            e com todo o cuidado que o seu pet merece.
-                        </p>
-                        <p>Valor: <strong>A partir de R$ 60,00</strong> (varia conforme porte e raça)</p>
-                        <p>Tele-busca: <strong>Disponível</strong> — Buscamos e entregamos o seu pet em casa.</p>
-                    </article>
-                </li>
-
-                <li>
-                    <article>
-                        <h3>Consulta Veterinária</h3>
-                        <p>
-                            Consultas com médico-veterinário credenciado para check-ups de rotina,
-                            diagnósticos, prescrição de medicamentos e acompanhamento de saúde geral
-                            para cães, gatos e pequenos animais.
-                        </p>
-                        <p>Valor: <strong>R$ 120,00</strong> por consulta</p>
-                        <p>Tele-busca: <strong>Não disponível</strong> para este serviço.</p>
-                    </article>
-                </li>
-
-                <li>
-                    <article>
-                        <h3>Hotel para Pets</h3>
-                        <p>
-                            Hospedagem segura e confortável para o seu pet enquanto você viaja.
-                            Ambiente climatizado, supervisionado 24 horas, com alimentação e
-                            passeios diários incluídos na diária.
-                        </p>
-                        <p>Valor: <strong>R$ 90,00</strong> por diária</p>
-                        <p>Tele-busca: <strong>Disponível</strong> — Buscamos e entregamos o seu pet em casa.</p>
-                    </article>
-                </li>
-
-                <li>
-                    <article>
-                        <h3>Vacinação</h3>
-                        <p>
-                            Aplicação de vacinas obrigatórias e opcionais para cães e gatos,
-                            incluindo V8, V10, antirrábica, FIV/FeLV e outras, conforme
-                            o calendário vacinal recomendado pelo veterinário.
-                        </p>
-                        <p>Valor: <strong>A partir de R$ 45,00</strong> (varia conforme a vacina)</p>
-                        <p>Tele-busca: <strong>Não disponível</strong> para este serviço.</p>
-                    </article>
-                </li>
-
-                <li>
-                    <article>
-                        <h3>Adestramento</h3>
-                        <p>
-                            Sessões de adestramento comportamental para cães com adestrador certificado.
-                            Trabalha obediência básica, correção de comportamentos indesejados e
-                            socialização. Pacotes individuais ou em grupo disponíveis.
-                        </p>
-                        <p>Valor: <strong>R$ 150,00</strong> por sessão individual</p>
-                        <p>Tele-busca: <strong>Disponível</strong> — Buscamos e entregamos o seu pet em casa.</p>
-                    </article>
-                </li>
-            </ul>
-        </section>
-
-    </main>
-
-    <!--  RODAPÉ  -->
-    <footer id="contato">
-        <h2>Contato e Informações</h2>
-
-        <address>
-            <p><strong>PetFeliz Petshop</strong></p>
-            <p>Rua das Flores, 452 — Bairro Jardim Verde</p>
-            <p>Porto Alegre — RS, CEP 90000-000</p>
-            <p>Telefone: <a href="tel:+555133334444">(51) 3333-4444</a></p>
-            <p>WhatsApp: <a href="https://wa.me/5551999998888">(51) 99999-8888</a></p>
-            <p>E-mail: <a href="mailto:contato@petfeliz.com.br">contato@petfeliz.com.br</a></p>
-        </address>
-
-        <section>
-            <h3>Horário de Funcionamento</h3>
-            <ul>
-                <li>Segunda a Sexta: <strong>08h às 18h</strong></li>
-                <li>Sábado: <strong>08h às 14h</strong></li>
-                <li>Domingo e Feriados: <strong>Fechado</strong></li>
-            </ul>
-        </section>
-
-        <section>
-            <h3>Informações Legais</h3>
-            <p>PetFeliz Comércio de Produtos para Animais Ltda.</p>
-            <p>CNPJ: 12.345.678/0001-99</p>
-            <p>Inscrição Municipal: 987654321</p>
-        </section>
-
-        <p>
-            <small>
-                &copy; 2026 PetFeliz Petshop — Todos os direitos reservados.
-            </small>
-        </p>
-    </footer>
+        atualizarHora();
+        setInterval(atualizarHora, 1000);
+        definirDataMinima();
+        atualizarMetodoAgendamento();
+    </script>
 
 </body>
 
